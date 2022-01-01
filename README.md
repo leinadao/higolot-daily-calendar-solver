@@ -1,2 +1,2 @@
-# gobase
-A base golang setup
+# higolotdailycalendarsolver
+A solver for the Higolot Daily Calendar Puzzle
