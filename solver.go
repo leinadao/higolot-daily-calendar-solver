@@ -5,28 +5,6 @@ import (
 	"fmt"
 )
 
-// grid is a puzzle layout.
-type grid [][]string
-
-// setTarget marks the grid with the given target month, day number and day name.
-// i.e. the target spots of the grid are blanked out.
-// An error is returned if it's unable to set all three targets.
-func (g *grid) setTarget(month, dayNum, dayName string) error {
-	setNum := 0
-	for iy, r := range *g {
-		for ix, x := range r {
-			if x == month || x == dayNum || x == dayName {
-				(*g)[iy][ix] = ""
-				setNum++
-			}
-		}
-	}
-	if setNum != 3 {
-		return errors.New("failed to set target")
-	}
-	return nil
-}
-
 // piece is a higolot dail calendar puzzle piece.
 type piece struct {
 	shape [][]bool
@@ -60,6 +38,28 @@ func (p *piece) transpose() {
 		}
 	}
 	p.shape = newArr
+}
+
+// grid is a puzzle layout.
+type grid [][]string
+
+// setTarget marks the grid with the given target month, day number and day name.
+// i.e. the target spots of the grid are blanked out.
+// An error is returned if it's unable to set all three targets.
+func (g *grid) setTarget(month, dayNum, dayName string) error {
+	setNum := 0
+	for iy, r := range *g {
+		for ix, x := range r {
+			if x == month || x == dayNum || x == dayName {
+				(*g)[iy][ix] = ""
+				setNum++
+			}
+		}
+	}
+	if setNum != 3 {
+		return errors.New("failed to set target")
+	}
+	return nil
 }
 
 // puzzle is a higolot daily calendar.
