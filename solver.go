@@ -6,22 +6,20 @@ import (
 )
 
 // piece is a higolot dail calendar puzzle piece.
-type piece struct {
-	shape [][]bool
-}
+type piece [][]bool
 
 // width returns the number of grid columns required to accommodate the piece.
 func (p *piece) width() int {
-	return len(p.shape[0])
+	return len((*p)[0])
 }
 
 // height returns the number of grid rows required to accommodate the piece.
 func (p *piece) height() int {
-	return len(p.shape)
+	return len(*p)
 }
 
 // getEmptyRotatedArray returns an empty rotated copy of the piece's representation.
-func (p *piece) getEmptyRotatedArray() [][]bool {
+func (p *piece) getEmptyRotatedArray() piece {
 	newArr := make([][]bool, p.width())
 	for i := range newArr {
 		newArr[i] = make([]bool, p.height())
@@ -34,10 +32,10 @@ func (p *piece) transpose() {
 	newArr := p.getEmptyRotatedArray()
 	for iy := 0; iy < p.height(); iy++ {
 		for ix := 0; ix < p.width(); ix++ {
-			newArr[ix][iy] = p.shape[iy][ix]
+			newArr[ix][iy] = (*p)[iy][ix]
 		}
 	}
-	p.shape = newArr
+	*p = newArr
 }
 
 // grid is a puzzle layout.
@@ -85,54 +83,54 @@ var p puzzle = puzzle{
 		{"29", "30", "31", "Sun", "Mon", "Tues", "Wed"},
 		{"", "", "", "", "Thur", "Fri", "Sat"},
 	}, pieces: []piece{
-		{shape: [][]bool{
+		{
 			{true, true, true},
 			{true, false, false},
 			{true, false, false},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, false},
 			{true, false},
 			{true, false},
 			{true, true},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, true, false},
 			{false, true, true},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, false, false},
 			{true, true, true},
 			{true, false, false},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{false, true, true, true},
 			{true, true, false, false},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, true, true},
 			{true, true, false},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, true, true},
 			{true, false, true},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{false, true},
 			{false, true},
 			{true, true},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true, false, false},
 			{true, true, true},
 			{false, false, true},
-		}},
-		{shape: [][]bool{
+		},
+		{
 			{true},
 			{true},
 			{true},
 			{true},
-		}},
+		},
 	},
 }
 
