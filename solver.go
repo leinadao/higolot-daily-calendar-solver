@@ -41,6 +41,16 @@ func (p *piece) transpose() {
 // grid is a puzzle layout.
 type grid [][]string
 
+// width returns the grid width in piece spaces.
+func (g *grid) width() int {
+	return len((*g)[0])
+}
+
+// height returns the grid height in piece spaces.
+func (g *grid) height() int {
+	return len(*g)
+}
+
 // setTarget marks the grid with the given target month, day number and day name.
 // i.e. the target spots of the grid are blanked out.
 // An error is returned if it's unable to set all three targets.
