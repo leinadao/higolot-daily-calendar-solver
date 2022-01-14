@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// piece is a higolot dail calendar puzzle piece.
+// piece is a higolot daily calendar puzzle piece.
 type piece [][]bool
 
 // width returns the number of grid columns required to accommodate the piece.
@@ -38,7 +38,7 @@ func (p *piece) transpose() {
 	*p = newArr
 }
 
-// grid is a puzzle layout.
+// grid is a higolot daily calendar layout.
 type grid [][]string
 
 // width returns the grid width in piece spaces.
